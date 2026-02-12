@@ -1,7 +1,7 @@
 package fr.leboncoin.domain.models
 
 sealed class ResultOf<out T> {
-    data class Success<out R>(val value: R): ResultOf<R>()
+    data class Success<out T>(val value: T): ResultOf<T>()
     data class Failure(val errorType: ErrorType): ResultOf<Nothing>()
 }
 

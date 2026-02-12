@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ksp)
     kotlin("kapt")
 }
 
@@ -51,6 +50,10 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
+
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    kapt(libs.androidx.room.compiler)
 
     testImplementation(libs.junit)
 }
