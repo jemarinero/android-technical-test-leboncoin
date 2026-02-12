@@ -17,6 +17,7 @@ ksp = "2.2.10-2.0.2"
 coil = "3.3.0"
 leakcanary = "2.14"
 hilt = "2.55"
+hiltNavigation = "1.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -54,6 +55,7 @@ leakcanary-android = { group = "com.squareup.leakcanary", name = "leakcanary-and
 # Hilt
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
