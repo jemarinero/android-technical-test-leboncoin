@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-//@OptIn(DelicateCoroutinesApi::class)
 @HiltViewModel
 class AlbumsViewModel
 @Inject
