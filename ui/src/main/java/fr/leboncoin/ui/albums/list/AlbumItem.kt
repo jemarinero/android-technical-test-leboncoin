@@ -1,6 +1,5 @@
-package fr.leboncoin.androidrecruitmenttestapp.ui
+package fr.leboncoin.ui.albums.list
 
-import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,13 +26,12 @@ import com.adevinta.spark.ExperimentalSparkApi
 import com.adevinta.spark.SparkTheme
 import com.adevinta.spark.components.card.Card
 import com.adevinta.spark.components.chips.ChipTinted
-import fr.leboncoin.data.network.model.AlbumDto
 
 @OptIn(ExperimentalSparkApi::class)
 @Composable
 fun AlbumItem(
-    album: AlbumDto,
-    onItemSelected : (AlbumDto) -> Unit,
+//    album: AlbumDto, //TODO change for presentation model
+    onItemSelected : (/*AlbumDto*/) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -41,12 +39,12 @@ fun AlbumItem(
             .fillMaxWidth()
             .height(120.dp)
             .padding(horizontal = 16.dp),
-        onClick = { onItemSelected(album) },
+        onClick = { onItemSelected(/*album*/) },
     ) {
         Row {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(album.thumbnailUrl)
+                    .data(/*album.thumbnailUrl*/"")
                     .httpHeaders(
                         NetworkHeaders.Builder()
                             .add("User-Agent", "LeboncoinApp/1.0")
@@ -54,7 +52,7 @@ fun AlbumItem(
                     )
                     .crossfade(true)
                     .build(),
-                contentDescription = album.title,
+                contentDescription = "",//album.title,
                 modifier = modifier
                     .fillMaxHeight()
                     .aspectRatio(1f),
@@ -67,7 +65,7 @@ fun AlbumItem(
                     .padding(14.dp),
             ) {
                 Text(
-                    text = album.title,
+                    text = "",//album.title,
                     style = SparkTheme.typography.caption,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -80,10 +78,10 @@ fun AlbumItem(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     ChipTinted(
-                        text = "Album #${album.albumId}"
+                        text = "Album #${"album.albumId"}"
                     )
                     ChipTinted(
-                        text = "Track #${album.id}"
+                        text = "Track #${"album.id"}"
                     )
                 }
             }
