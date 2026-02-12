@@ -5,15 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.adevinta.spark.SparkTheme
+import dagger.hilt.android.AndroidEntryPoint
+import fr.leboncoin.ui.albums.list.AlbumsScreen
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-//    private val viewModel: AlbumsViewModel by lazy {
-//        val dependencies = (application as AppDependenciesProvider).dependencies
-//        val factory = AlbumsViewModel.Factory(dependencies.dataDependencies.albumsRepository)
-//        ViewModelProvider(this, factory)[AlbumsViewModel::class.java]
-//    }
-//
 //    private val analyticsHelper: AnalyticsHelper by lazy {
 //        val dependencies = (application as AppDependenciesProvider).dependencies
 //        dependencies.analyticsHelper
@@ -28,13 +25,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             SparkTheme {
                 //TODO change for navigation host
-//                AlbumsScreen(
-//                    viewModel = viewModel,
-//                    onItemSelected = {
+                AlbumsScreen(
+                    onItemSelected = {
 //                        analyticsHelper.trackSelection(it.id.toString())
 //                        startActivity(Intent(this, DetailsActivity::class.java))
-//                    }
-//                )
+                    }
+                )
             }
         }
     }

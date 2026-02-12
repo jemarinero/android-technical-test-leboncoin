@@ -18,41 +18,33 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import coil3.network.NetworkHeaders
-import coil3.network.httpHeaders
-import coil3.request.ImageRequest
-import coil3.request.crossfade
 import com.adevinta.spark.ExperimentalSparkApi
 import com.adevinta.spark.SparkTheme
 import com.adevinta.spark.components.card.Card
 import com.adevinta.spark.components.chips.ChipTinted
+import fr.leboncoin.domain.models.AlbumModel
+import fr.leboncoin.ui.extensions.buildAlbumImageRequest
 
 @OptIn(ExperimentalSparkApi::class)
 @Composable
 fun AlbumItem(
-//    album: AlbumDto, //TODO change for presentation model
-    onItemSelected : (/*AlbumDto*/) -> Unit,
+    album: AlbumModel,
+    onItemSelected : (AlbumModel) -> Unit,
     modifier: Modifier = Modifier,
 ) {
+
+    val context = LocalContext.current
     Card(
         modifier = modifier
             .fillMaxWidth()
             .height(120.dp)
             .padding(horizontal = 16.dp),
-        onClick = { onItemSelected(/*album*/) },
+        onClick = { onItemSelected(album) },
     ) {
         Row {
             AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(/*album.thumbnailUrl*/"")
-                    .httpHeaders(
-                        NetworkHeaders.Builder()
-                            .add("User-Agent", "LeboncoinApp/1.0")
-                            .build()
-                    )
-                    .crossfade(true)
-                    .build(),
-                contentDescription = "",//album.title,
+                model = context.buildAlbumImageRequest(album.thumbnailUrl),
+                contentDescription = album.title,
                 modifier = modifier
                     .fillMaxHeight()
                     .aspectRatio(1f),
@@ -65,7 +57,7 @@ fun AlbumItem(
                     .padding(14.dp),
             ) {
                 Text(
-                    text = "",//album.title,
+                    text = album.title,
                     style = SparkTheme.typography.caption,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -78,10 +70,10 @@ fun AlbumItem(
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
                     ChipTinted(
-                        text = "Album #${"album.albumId"}"
+                        text = "Album #${album.albumId}"
                     )
                     ChipTinted(
-                        text = "Track #${"album.id"}"
+                        text = "Track #${album.id}"
                     )
                 }
             }
