@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm")
+    kotlin("kapt")
 }
 
 kotlin {
@@ -8,6 +9,8 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
 
     testImplementation(kotlin("test"))
     testImplementation(libs.junit)
