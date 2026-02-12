@@ -7,12 +7,10 @@ plugins {
 
 android {
     namespace = "fr.leboncoin.data"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -25,10 +23,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
@@ -36,16 +36,15 @@ android {
     buildFeatures {
         buildConfig = true
     }
+}
 
-    dependencies {
-        implementation(libs.retrofit.core)
-        implementation(libs.retrofit.kotlin.serialization)
-        implementation(libs.okhttp.logging)
+dependencies {
+    implementation(project(":domain"))
 
-        implementation(libs.kotlin.serialization.json)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
+    implementation(libs.okhttp.logging)
+    implementation(libs.kotlin.serialization.json)
 
-        testImplementation(libs.junit)
-        androidTestImplementation(libs.androidx.junit) // Useless dependency
-        androidTestImplementation(libs.androidx.espresso.core) // Useless dependency
-    }
+    testImplementation(libs.junit)
 }
