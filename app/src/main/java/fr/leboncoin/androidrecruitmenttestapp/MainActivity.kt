@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.adevinta.spark.SparkTheme
 import dagger.hilt.android.AndroidEntryPoint
-import fr.leboncoin.ui.albums.list.AlbumsScreen
+import fr.leboncoin.ui.navigation.AppNavigation
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -24,13 +24,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             SparkTheme {
-                //TODO change for navigation host
-                AlbumsScreen(
-                    onItemSelected = {
-//                        analyticsHelper.trackSelection(it.id.toString())
-//                        startActivity(Intent(this, DetailsActivity::class.java))
-                    }
-                )
+                AppNavigation()
             }
         }
     }

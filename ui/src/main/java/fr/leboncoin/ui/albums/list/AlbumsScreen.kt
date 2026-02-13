@@ -21,7 +21,7 @@ import fr.leboncoin.ui.components.FullscreenLoading
 fun AlbumsScreen(
     modifier: Modifier = Modifier,
     viewModel: AlbumsViewModel = hiltViewModel(),
-    onItemSelected: (AlbumModel) -> Unit,
+    onItemClick: (AlbumModel) -> Unit,
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -46,7 +46,7 @@ fun AlbumsScreen(
                     ) { album ->
                         AlbumItem(
                             album = album,
-                            onItemSelected = onItemSelected,
+                            onItemSelected = onItemClick,
                         )
                     }
                 }
