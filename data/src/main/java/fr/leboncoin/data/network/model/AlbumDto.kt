@@ -1,12 +1,13 @@
 package fr.leboncoin.data.network.model
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class AlbumDto(
-    val id: Int,
-    val albumId: Int,
-    val title: String,
-    val url: String,
-    val thumbnailUrl: String
+    @SerialName("id") val id: Int,
+    @SerialName("albumId") val albumId: Int,
+    @SerialName("title") val title: String,
+    @SerialName("url") val url: String,
+    @SerialName("thumbnailUrl") val thumbnailUrl: String
 )
