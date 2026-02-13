@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Unknown Error -->
+    <string name="error_unknown_title">Algo salió mal</string>
+    <string name="error_unknown_description">
+        Ha ocurrido un error inesperado. Por favor, inténtalo de nuevo.
+    </string>
+
+    <!-- Connectivity Error -->
+    <string name="error_connectivity_title">Sin conexión a Internet</string>
+    <string name="error_connectivity_description">
+        Verifica tu conexión e inténtalo nuevamente.
+    </string>
+
+    <!-- Server Error -->
+    <string name="error_server_title">Error del servidor</string>
+    <string name="error_server_description">
+        Nuestros servidores no están respondiendo. Inténtalo más tarde.
+    </string>
+
+    <!-- Common -->
+    <string name="error_close">Cerrar</string>
+    <string name="empty_no_data">No hay datos disponibles</string>
+
+</resources>
