@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Unknown Error -->
+    <string name="error_unknown_title">Something went wrong</string>
+    <string name="error_unknown_description">
+        An unexpected error occurred. Please try again.
+    </string>
+
+    <!-- Connectivity Error -->
+    <string name="error_connectivity_title">No Internet connection</string>
+    <string name="error_connectivity_description">
+        Please check your connection and try again.
+    </string>
+
+    <!-- Server Error -->
+    <string name="error_server_title">Server error</string>
+    <string name="error_server_description">
+        Our servers are not responding. Please try again later.
+    </string>
+
+    <!-- Common -->
+    <string name="error_close">Close</string>
+    <string name="empty_no_data">No data available</string>
+
+</resources>

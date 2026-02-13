@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Unknown Error -->
+    <string name="error_unknown_title">Une erreur est survenue</string>
+    <string name="error_unknown_description">
+        Une erreur inattendue s\'est produite. Veuillez réessayer.
+    </string>
+
+    <!-- Connectivity Error -->
+    <string name="error_connectivity_title">Pas de connexion Internet</string>
+    <string name="error_connectivity_description">
+        Vérifiez votre connexion et réessayez.
+    </string>
+
+    <!-- Server Error -->
+    <string name="error_server_title">Erreur du serveur</string>
+    <string name="error_server_description">
+        Nos serveurs ne répondent pas. Veuillez réessayer plus tard.
+    </string>
+
+    <!-- Common -->
+    <string name="error_close">Fermer</string>
+    <string name="empty_no_data">Aucune donnée disponible</string>
+
+</resources>
