@@ -13,6 +13,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,6 +25,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.adevinta.spark.components.scaffold.Scaffold
 import fr.leboncoin.domain.models.AlbumModel
+import fr.leboncoin.ui.tracking.ALBUM_SCREEN
 import fr.leboncoin.ui.R
 import fr.leboncoin.ui.components.FullscreenEmpty
 import fr.leboncoin.ui.components.FullscreenError
@@ -36,6 +38,9 @@ fun AlbumsScreen(
     viewModel: AlbumsViewModel = hiltViewModel(),
     onItemClick: (AlbumModel) -> Unit,
 ) {
+    LaunchedEffect(Unit) {
+        viewModel.onScreenViewed(ALBUM_SCREEN)
+    }
 
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     var menuExpanded by remember { mutableStateOf(false) }
@@ -91,7 +96,10 @@ fun AlbumsScreen(
                     ) { album ->
                         AlbumItem(
                             album = album,
-                            onItemSelected = onItemClick,
+                            onItemSelected = {
+                                viewModel.onItemSelected(it.id.toString())
+                                onItemClick.invoke(it)
+                            }
                         )
                     }
                 }

@@ -20,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -29,6 +30,7 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import fr.leboncoin.domain.models.AlbumModel
+import fr.leboncoin.ui.tracking.ALBUM_DETAIL_SCREEN
 import fr.leboncoin.ui.R
 import fr.leboncoin.ui.components.FullscreenEmpty
 import fr.leboncoin.ui.components.FullscreenError
@@ -39,6 +41,10 @@ fun AlbumDetailScreen(
     viewModel: AlbumDetailViewModel = hiltViewModel(),
     onBackClick: () -> Unit,
 ) {
+
+    LaunchedEffect(Unit) {
+        viewModel.onScreenViewed(ALBUM_DETAIL_SCREEN)
+    }
 
     val state by viewModel.state.collectAsStateWithLifecycle()
 
