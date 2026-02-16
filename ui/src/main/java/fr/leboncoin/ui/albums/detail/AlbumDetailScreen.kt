@@ -68,7 +68,11 @@ fun AlbumDetailToolbar(
 ) {
 
     val title = album?.let {
-        "Album #${it.albumId} Track #${it.id}"
+        stringResource(
+            R.string.toolbar_title_album_detail,
+            it.albumId,
+            it.id
+        )
     } ?: ""
 
     TopAppBar(
@@ -77,7 +81,7 @@ fun AlbumDetailToolbar(
             IconButton(onClick = onBackClick) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back"
+                    contentDescription = null
                 )
             }
         }

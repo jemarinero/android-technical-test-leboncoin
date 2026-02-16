@@ -22,5 +22,9 @@
     <!-- Common -->
     <string name="error_close">Fermer</string>
     <string name="empty_no_data">Aucune donnée disponible</string>
+    <string name="toolbar_title_albums">Albums</string>
+    <string name="menu_force_refresh">Forcer l\’actualisation</string>
+    <string name="menu_force_refresh_description">Force la mise à jour des données depuis le serveur</string>
+    <string name="toolbar_title_album_detail">Album n°%1$d Piste n°%2$d</string>
 
 </resources>

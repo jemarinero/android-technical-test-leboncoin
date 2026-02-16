@@ -19,17 +19,25 @@ constructor(
     private val albumMapper: AlbumMapper
 ) : AlbumRepository {
 
-    override suspend fun getAlbums(): ResultOf<List<AlbumModel>> {
+    override suspend fun getAlbums(
+        forceRefresh: Boolean
+    ): ResultOf<List<AlbumModel>> {
+
         val local = localDS.getAll()
-        if (local.isEmpty()) {
+
+        if (local.isEmpty() || forceRefresh) {
+
             val remote = remoteDS.getRemoteAlbums()
+
             remote.doIfSuccess {
+                localDS.clearAll()
                 localDS.insertAll(it.map(albumMapper::mapToEntity))
             }
             remote.doIfFailure {
                 return ResultOf.Failure(it ?: ErrorType.UnknownError)
             }
         }
+
         return ResultOf.Success(
             localDS.getAll()
                 .map { albumMapper.mapToDomain(it) }
