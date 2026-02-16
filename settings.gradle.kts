@@ -11,6 +11,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -19,7 +22,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Android RecruitmentTest App"
+rootProject.name = "android-recruitmentTest-app"
 include(":app")
 include(":data")
 include(":ui")
