@@ -13,9 +13,14 @@ class GetAlbumsUseCase
 constructor(
     private val albumRepository: AlbumRepository,
     dispatcherProvider: DispatcherProvider
-): BaseUseCase<Unit, ResultOf<List<AlbumModel>>>(dispatcherProvider){
+) : BaseUseCase<GetAlbumsParams, ResultOf<List<AlbumModel>>>(dispatcherProvider) {
 
-    override fun configure(param: Unit): Flow<ResultOf<List<AlbumModel>>> = flow {
-      emit(albumRepository.getAlbums())
+    override fun configure(param: GetAlbumsParams): Flow<ResultOf<List<AlbumModel>>> = flow {
+        emit(albumRepository.getAlbums(param.forceRefresh))
     }
 }
+
+
+data class GetAlbumsParams(
+    val forceRefresh: Boolean = false
+)

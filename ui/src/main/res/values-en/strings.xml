@@ -22,5 +22,9 @@
     <!-- Common -->
     <string name="error_close">Close</string>
     <string name="empty_no_data">No data available</string>
+    <string name="toolbar_title_albums">Albums</string>
+    <string name="menu_force_refresh">Force refresh</string>
+    <string name="menu_force_refresh_description">Forces updating data from the server</string>
+    <string name="toolbar_title_album_detail">Album #%1$d Track #%2$d</string>
 
 </resources>
