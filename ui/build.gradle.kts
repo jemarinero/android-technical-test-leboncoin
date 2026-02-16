@@ -59,5 +59,5 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
-    testImplementation(libs.junit)
+    testImplementation(projects.testutils)
 }
