@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import fr.leboncoin.ui.albums.detail.AlbumDetailScreen
 import fr.leboncoin.ui.albums.list.AlbumsScreen
 
 @Composable
@@ -38,9 +39,10 @@ fun AppNavigation() {
                     type = NavType.IntType
                 }
             )
-        ) { backStackEntry ->
-
-           //TODO detail screen here
+        ) {
+            AlbumDetailScreen {
+                navController.popBackStack()
+            }
         }
     }
 }

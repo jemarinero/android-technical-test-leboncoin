@@ -43,4 +43,16 @@ constructor(
             }
         )
     }
+
+    override fun getAlbumDetail(
+        id: Int,
+        albumId: Int
+    ): ResultOf<AlbumModel> {
+        try {
+            val result = localDS.getAlbumDetail(id, albumId)
+            return ResultOf.Success(albumMapper.mapToDomain(result))
+        } catch (_: Exception) {
+            return ResultOf.Failure(ErrorType.UnknownError)
+        }
+    }
 }
