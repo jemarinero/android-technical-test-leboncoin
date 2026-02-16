@@ -15,5 +15,7 @@ constructor(
     dispatcherProvider: DispatcherProvider
 ): BaseUseCase<Unit, ResultOf<List<AlbumModel>>>(dispatcherProvider){
 
-    override fun configure(param: Unit): Flow<ResultOf<List<AlbumModel>>> = albumRepository.getAlbums()
+    override fun configure(param: Unit): Flow<ResultOf<List<AlbumModel>>> = flow {
+      emit(albumRepository.getAlbums())
+    }
 }
