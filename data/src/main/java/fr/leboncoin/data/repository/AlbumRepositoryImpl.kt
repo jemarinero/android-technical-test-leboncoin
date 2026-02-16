@@ -50,7 +50,9 @@ constructor(
     ): ResultOf<AlbumModel> {
         try {
             val result = localDS.getAlbumDetail(id, albumId)
-            return ResultOf.Success(albumMapper.mapToDomain(result))
+            return result?.let {
+                ResultOf.Success(albumMapper.mapToDomain(it))
+            } ?: ResultOf.Failure(ErrorType.UnknownError)
         } catch (_: Exception) {
             return ResultOf.Failure(ErrorType.UnknownError)
         }

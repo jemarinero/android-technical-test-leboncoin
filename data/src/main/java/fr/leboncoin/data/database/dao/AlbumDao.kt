@@ -19,5 +19,5 @@ interface AlbumDao {
     fun deleteAll()
 
     @Query("SELECT * FROM album WHERE id = :id AND albumId = :albumId")
-    fun getAlbumDetail(id: Int, albumId: Int): AlbumEntity
+    fun getAlbumDetail(id: Int, albumId: Int): AlbumEntity?
 }
