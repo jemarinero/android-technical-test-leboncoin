@@ -11,4 +11,6 @@ constructor(private val itemDao: AlbumDao) {
     fun insertAll(items: List<AlbumEntity>) = itemDao.insertAll(items)
     fun getAll() = itemDao.getAll()
     fun deleteAll() = itemDao.deleteAll()
+    fun getAlbumDetail(id: Int, albumId: Int) = itemDao.getAlbumDetail(id, albumId)
+
 }
