@@ -9,11 +9,6 @@ import fr.leboncoin.domain.models.ResultOf
 import fr.leboncoin.domain.models.doIfFailure
 import fr.leboncoin.domain.models.doIfSuccess
 import fr.leboncoin.domain.repositories.AlbumRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class AlbumRepositoryImpl
@@ -24,23 +19,20 @@ constructor(
     private val albumMapper: AlbumMapper
 ) : AlbumRepository {
 
-    override fun getAlbums(): Flow<ResultOf<List<AlbumModel>>> = flow {
-        val local = localDS.getAll().first()
+    override suspend fun getAlbums(): ResultOf<List<AlbumModel>> {
+        val local = localDS.getAll()
         if (local.isEmpty()) {
             val remote = remoteDS.getRemoteAlbums()
             remote.doIfSuccess {
                 localDS.insertAll(it.map(albumMapper::mapToEntity))
             }
             remote.doIfFailure {
-                emit(ResultOf.Failure(it ?: ErrorType.UnknownError))
+                return ResultOf.Failure(it ?: ErrorType.UnknownError)
             }
         }
-        emitAll(localDS.getAll()
-            .map { entities ->
-                ResultOf.Success(
-                    entities.map(albumMapper::mapToDomain)
-                )
-            }
+        return ResultOf.Success(
+            localDS.getAll()
+                .map { albumMapper.mapToDomain(it) }
         )
     }
 
