@@ -24,6 +24,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -35,6 +36,7 @@ import fr.leboncoin.ui.R
 import fr.leboncoin.ui.components.FullscreenEmpty
 import fr.leboncoin.ui.components.FullscreenError
 import fr.leboncoin.ui.components.FullscreenLoading
+import fr.leboncoin.ui.extensions.buildAlbumImageRequest
 
 @Composable
 fun AlbumDetailScreen(
@@ -124,7 +126,7 @@ fun AlbumDetailContent(
 fun AlbumDetail(
     album: AlbumModel
 ) {
-
+    val context = LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -132,7 +134,7 @@ fun AlbumDetail(
     ) {
 
         AsyncImage(
-            model = album.url,
+            model = context.buildAlbumImageRequest(album.url),
             contentDescription = album.title,
             modifier = Modifier
                 .fillMaxWidth()
