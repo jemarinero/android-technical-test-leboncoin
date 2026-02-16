@@ -11,6 +11,7 @@ import fr.leboncoin.domain.usercase.GetAlbumsParams
 import fr.leboncoin.domain.usercase.GetAlbumsUseCase
 import fr.leboncoin.ui.models.ErrorUiModel
 import fr.leboncoin.ui.models.toUiModel
+import fr.leboncoin.ui.tracking.AnalyticsTracker
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -25,6 +26,7 @@ class AlbumsViewModel
 @Inject
 constructor(
     private val getAlbumsUseCase: GetAlbumsUseCase,
+    private val analyticsTracker: AnalyticsTracker
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(UiState())
@@ -76,6 +78,9 @@ constructor(
         _uiState.update { UiState() }
     }
 
+    fun onScreenViewed(screenName: String) = analyticsTracker.trackScreenViewed(screenName, viewModelScope)
+
+    fun onItemSelected(itemId: String) = analyticsTracker.trackItemSelected(itemId, viewModelScope)
 }
 
 data class UiState(

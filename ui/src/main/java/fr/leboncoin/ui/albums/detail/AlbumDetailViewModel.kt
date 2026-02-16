@@ -13,6 +13,7 @@ import fr.leboncoin.ui.models.ErrorUiModel
 import fr.leboncoin.ui.models.toUiModel
 import fr.leboncoin.ui.navigation.ARG_ALBUM_ID
 import fr.leboncoin.ui.navigation.ARG_ID
+import fr.leboncoin.ui.tracking.AnalyticsTracker
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -27,6 +28,7 @@ class AlbumDetailViewModel
 @Inject
 constructor(
     private val getAlbumDetailUseCase: GetAlbumDetailUseCase,
+    private val analyticsTracker: AnalyticsTracker,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -88,6 +90,8 @@ constructor(
             }
             .launchIn(viewModelScope)
     }
+
+    fun onScreenViewed(screenName: String) = analyticsTracker.trackScreenViewed(screenName, viewModelScope)
 
     fun onErrorClose() {
         _state.update { it.copy(error = null) }

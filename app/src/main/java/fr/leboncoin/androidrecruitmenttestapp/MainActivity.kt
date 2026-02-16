@@ -11,16 +11,9 @@ import fr.leboncoin.ui.navigation.AppNavigation
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-//    private val analyticsHelper: AnalyticsHelper by lazy {
-//        val dependencies = (application as AppDependenciesProvider).dependencies
-//        dependencies.analyticsHelper
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-//        analyticsHelper.initialize(this)
 
         setContent {
             SparkTheme {
